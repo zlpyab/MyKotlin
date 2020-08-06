@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.LoginActivity">
+
+    <TextView
+        android:id="@+id/v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:textSize="@dimen/font30"
+        android:textColor="@color/color_21d1bd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/space100"
+        />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入账号"
+        android:inputType="phone"
+        android:layout_marginTop="@dimen/space80"
+        android:layout_marginLeft="@dimen/space30"
+        android:layout_marginRight="@dimen/space30"
+        app:layout_constraintTop_toBottomOf="@+id/v"
+        />
+    <EditText
+        android:id="@+id/et_psw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:layout_marginTop="@dimen/space10"
+        android:layout_marginLeft="@dimen/space30"
+        android:layout_marginRight="@dimen/space30"
+        app:layout_constraintTop_toBottomOf="@+id/et_phone"
+        />
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space50"
+        android:text="登录"
+        android:textColor="@color/color_ffffff"
+        android:background="@color/color_21d1bd"
+        android:textSize="@dimen/font20"
+        android:layout_marginTop="@dimen/space50"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginRight="@dimen/space30"
+        app:layout_constraintTop_toBottomOf="@id/et_psw"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

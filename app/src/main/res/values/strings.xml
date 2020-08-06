@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MyKotlin</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+
+    <string name="network_connection_failed">网络连接失败</string>
+    <string name="network_request_failed">网络请求失败</string>
+    <string name="network_request_timeout">网络请求超时</string>
+    <string name="api_data_parse_error">数据解析错误</string>
+</resources>
