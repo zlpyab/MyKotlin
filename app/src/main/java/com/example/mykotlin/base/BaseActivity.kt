@@ -1,9 +1,9 @@
 package com.example.mykotlin.base
 
-import android.app.Activity
 import android.os.Bundle
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mykotlin.common.manager.AppManager
+import com.example.mykotlin.common.dialog.ProgressDialogFragment
 import com.gyf.immersionbar.ImmersionBar
 
 /**
@@ -11,24 +11,19 @@ import com.gyf.immersionbar.ImmersionBar
  */
 open abstract class BaseActivity : AppCompatActivity() {
 
-    var mActivity : Activity? = null
-    var mImmersionBar : ImmersionBar? = null
+    private lateinit var progressDialogFragment: ProgressDialogFragment
+
+    protected lateinit var mImmersionBar: ImmersionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppManager.getInstance().addActivity(this)
-        mActivity = this
         setContentView(getLayoutId())
 
         //初始化沉浸式
         initImmersionBar()
-        //初始化数据
-        initData()
-        //初始化view
-        initView()
-        //设置监听
-        setListener()
     }
+
+    open fun getLayoutId() = 0
 
     private fun initImmersionBar() {
         mImmersionBar = ImmersionBar.with(this).apply {
@@ -38,20 +33,19 @@ open abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    abstract fun getLayoutId(): Int
-
-    open fun setListener() {
+    fun showProgressDialog(@StringRes message: Int) {
+        if (!this::progressDialogFragment.isInitialized) {
+            progressDialogFragment = ProgressDialogFragment.newInstance()
+        }
+        if (!progressDialogFragment.isAdded) {
+            progressDialogFragment.show(supportFragmentManager, message, false)
+        }
     }
 
-    open  fun initView() {
-    }
-
-    open   fun initData() {
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        AppManager.getInstance().removeActivity(this)
+    fun hintProgressDialog() {
+        if (this::progressDialogFragment.isInitialized && progressDialogFragment.isVisible) {
+            progressDialogFragment.dismissAllowingStateLoss()
+        }
     }
 
 

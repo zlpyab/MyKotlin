@@ -2,15 +2,15 @@ package com.example.mykotlin.ui.activity
 
 import android.Manifest
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.CountDownTimer
 import android.text.TextUtils
 import android.view.View
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.mykotlin.R
-import com.example.mykotlin.base.BaseActivity
+import com.example.mykotlin.base.BaseVmActivity
 import com.example.mykotlin.common.manager.GlideManager
-import com.example.mykotlin.util.ActivityJumpUtils
+import com.example.mykotlin.main.MainActivity
+import com.example.mykotlin.util.ActivityHelper
 import com.example.mykotlin.util.SessionUtils
 import com.example.mykotlin.util.Utils
 import com.example.mykotlin.viewModel.LoginViewModel
@@ -19,18 +19,21 @@ import kotlinx.android.synthetic.main.activity_splash.*
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 
-class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
+class SplashActivity : BaseVmActivity<LoginViewModel>(), EasyPermissions.PermissionCallbacks {
 
     val duration: Long = 5
 
-    private val mViewModel by lazy {
-        ViewModelProvider(this).get(LoginViewModel::class.java)
-    }
+    override fun getLayoutId() = R.layout.activity_splash
+
+    override fun viewModelClass() = LoginViewModel::class.java
 
     override fun initView() {
-        mImmersionBar!!.statusBarDarkFont(false).hideBar(BarHide.FLAG_HIDE_BAR).init()
+        mImmersionBar.statusBarDarkFont(false).hideBar(BarHide.FLAG_HIDE_BAR).init()
 
         checkPermission()
+        tv_count.setOnClickListener {
+            goLoginOrMain()
+        }
     }
 
     private fun checkPermission() {
@@ -55,8 +58,7 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
                 .setRequestCode(1002)
                 .build().show()
         } else {
-            Utils.showToast("权限被拒绝")
-            finish()
+            goLoginOrMain()
         }
     }
 
@@ -73,21 +75,11 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
     }
 
     private fun isNeedShowAdv() {
-        mViewModel.downSplash()
+        GlideManager.loadImg("https://app.hyy10086.com/common/image/20200730/9f56fe4a-6be6-4d7f-bcd9-97eec1dc12cb5985.jpg", iv_img, this)
         countTimer.start()
+        tv_count.visibility = View.VISIBLE
         tv_count.setBgColor(R.color.color_7f2d2d2d)
         tv_count.start(duration)
-    }
-
-    override fun setListener() {
-        mViewModel.advertiseData.observe(this, Observer {
-            tv_count.visibility = View.VISIBLE
-            GlideManager.loadImg(it.imgUrl, iv_img, this)
-        })
-
-        tv_count.setOnClickListener {
-            goLoginOrMain()
-        }
     }
 
     private val countTimer: CountDownTimer = object : CountDownTimer((duration + 1) * 1000, 1000) {
@@ -107,12 +99,8 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
 
     private fun goLoginOrMain() {
         tv_count.stop()
-        if (TextUtils.isEmpty(SessionUtils.getLoginKey())) {
-            ActivityJumpUtils.jumpToLoginActivity(this)
-        } else {
-            ActivityJumpUtils.jumpToMainActivity(this)
-        }
-        finish()
+        ActivityHelper.start(LoginActivity::class.java)
+        ActivityHelper.finish(SplashActivity::class.java)
     }
 
     override fun onDestroy() {
@@ -120,9 +108,5 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
         countTimer.let {
             countTimer.cancel()
         }
-    }
-
-    override fun getLayoutId(): Int {
-        return R.layout.activity_splash
     }
 }

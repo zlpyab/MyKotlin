@@ -2,6 +2,7 @@ package com.example.mykotlin
 
 import android.app.Application
 import com.blankj.utilcode.util.LogUtils
+import com.example.mykotlin.util.ActivityHelper
 import com.example.mykotlin.util.Utils
 
 /**
@@ -16,6 +17,7 @@ class App :Application(){
         super.onCreate()
         instance = this
 
+        ActivityHelper.init(instance)
         LogUtils.getConfig().setBorderSwitch(false).setLogSwitch(Utils.isDebug).setLogHeadSwitch(false)
     }
 }

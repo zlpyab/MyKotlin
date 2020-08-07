@@ -6,53 +6,102 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.LoginActivity">
 
+
     <TextView
         android:id="@+id/v"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space50"
         android:text="登录"
+        android:textColor="@color/color_0a5273"
         android:textSize="@dimen/font30"
-        android:textColor="@color/color_21d1bd"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/space100"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_phone"
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_android_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v" />
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="WanAndroid"
+        android:textColor="@color/color_0a5273"
+        android:textSize="@dimen/font20"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入账号"
-        android:inputType="phone"
-        android:layout_marginTop="@dimen/space80"
-        android:layout_marginLeft="@dimen/space30"
-        android:layout_marginRight="@dimen/space30"
-        app:layout_constraintTop_toBottomOf="@+id/v"
-        />
-    <EditText
-        android:id="@+id/et_psw"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/account"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tv_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_0a5273"
+            android:textColorHighlight="@color/color_0a5273"
+            android:textColorHint="@color/color_0a5273"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入密码"
-        android:inputType="textPassword"
-        android:layout_marginTop="@dimen/space10"
-        android:layout_marginLeft="@dimen/space30"
-        android:layout_marginRight="@dimen/space30"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone"
-        />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/password"
+        android:textColorHint="@color/color_0a5273"
+        app:layout_constraintTop_toBottomOf="@+id/tilAccount"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/color_0a5273">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionGo"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_0a5273"
+            android:textColorHighlight="@color/color_0a5273"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/bt_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space50"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space50"
+        android:layout_marginRight="@dimen/space20"
+        android:background="@drawable/shape_button"
         android:text="登录"
         android:textColor="@color/color_ffffff"
-        android:background="@color/color_21d1bd"
         android:textSize="@dimen/font20"
-        android:layout_marginTop="@dimen/space50"
-        android:layout_marginLeft="@dimen/space20"
-        android:layout_marginRight="@dimen/space30"
-        app:layout_constraintTop_toBottomOf="@id/et_psw"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tilPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
