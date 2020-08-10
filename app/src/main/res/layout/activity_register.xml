@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space50"
-        android:text="登录"
+        android:text="注册"
         android:textColor="@color/color_0a5273"
         android:textSize="@dimen/font30"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,30 +92,44 @@
             android:textSize="@dimen/font14" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_register"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilConfirmPassword"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/confirm_password"
+        android:textColorHint="@color/color_0a5273"
         app:layout_constraintTop_toBottomOf="@+id/tilPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/color_0a5273"
-        android:textSize="@dimen/font16"
-        android:text="@string/register"
-        android:layout_marginEnd="@dimen/space16"
-        android:layout_marginTop="@dimen/space30"
-        />
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/color_0a5273">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionGo"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_0a5273"
+            android:textColorHighlight="@color/color_0a5273"
+            android:textSize="@dimen/font14" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/bt_login"
+        android:id="@+id/bt_register"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space50"
         android:layout_marginLeft="@dimen/space20"
         android:layout_marginTop="@dimen/space50"
         android:layout_marginRight="@dimen/space20"
         android:background="@drawable/shape_button"
-        android:text="登录"
+        android:text="马上注册"
         android:textColor="@color/color_ffffff"
         android:textSize="@dimen/font20"
-        app:layout_constraintTop_toBottomOf="@id/tv_register" />
+        app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

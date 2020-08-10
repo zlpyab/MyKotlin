@@ -6,6 +6,5 @@ package com.example.mykotlin.common
 object Constants {
 
     //key
-    val key_loginKey = "key_loginKey"
-    val key_phone = "key_phone"
+    val key_user_info = "key_user_info"
 }

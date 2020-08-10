@@ -1,11 +1,14 @@
 package com.example.mykotlin.base
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mykotlin.App
 import com.example.mykotlin.R
 import com.example.mykotlin.http.ApiException
+import com.example.mykotlin.http.HttpManager
 import com.example.mykotlin.util.CommonUtils
+import com.example.mykotlin.util.SessionUtils
 import com.example.mykotlin.util.Utils
 import com.google.gson.JsonParseException
 import kotlinx.coroutines.*
@@ -24,12 +27,7 @@ typealias Cancel = suspend (e: Exception) -> Unit
 
 open class BaseViewModel : ViewModel() {
 
-    fun launch(tryBlock: suspend CoroutineScope.() -> Unit) {
-        viewModelScope.launch(Dispatchers.Main) {
-            tryBlock()
-        }
-    }
-
+    val loginStatusInvalid: MutableLiveData<Boolean> = MutableLiveData()
 
     /**
      * 创建并执行协程
@@ -46,36 +44,35 @@ open class BaseViewModel : ViewModel() {
         showErrorToast: Boolean = true): Job {
         return viewModelScope.launch {
             try {
-                block
+                block.invoke()
             } catch (e: Exception) {
                 when (e) {
                     is CancellationException -> {
                         cancel?.invoke(e)
                     }
                     else -> {
-                        onError(e,showErrorToast)
-                         error?.invoke(e)
+                        onError(e, showErrorToast)
+                        error?.invoke(e)
                     }
                 }
             }
         }
     }
 
-
     /**
      * 统一处理错误
      * @param e 异常
      * @param showErrorToast 是否显示错误吐司
      */
-    private fun onError(e : Exception ,showErrorToast: Boolean) {
+    private fun onError(e: Exception, showErrorToast: Boolean) {
         when (e) {
             is ApiException -> {
                 when (e.code) {
                     -1001 -> {
-                        // 登录失效，清除用户信息、清除cookie/token
-//                        UserInfoStore.clearUserInfo()
-//                        RetrofitClient.clearCookie()
-//                        loginStatusInvalid.value = true
+                       //  登录失效，清除用户信息、清除cookie/token
+                        SessionUtils.clearUserInfo()
+                        HttpManager.clearCookie()
+                        loginStatusInvalid.value = true
                     }
                     // 其他api错误
                     -1 -> if (showErrorToast) Utils.showToast(e.message)

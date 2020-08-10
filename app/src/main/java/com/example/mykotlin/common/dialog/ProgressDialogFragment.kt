@@ -8,6 +8,7 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.example.mykotlin.R
+import kotlinx.android.synthetic.main.fragment_progress_dialog.*
 
 /**
  * Created by zlp on 2020/8/7 0007.
@@ -23,6 +24,11 @@ class ProgressDialogFragment :DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_progress_dialog,container,false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        tvMessage.text = (getString(messageResId ?: R.string.loading))
     }
 
     fun show(

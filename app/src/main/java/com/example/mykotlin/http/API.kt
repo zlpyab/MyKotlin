@@ -1,8 +1,6 @@
 package com.example.mykotlin.http
 
-import com.example.mykotlin.http.Res
-import com.example.mykotlin.model.bean.AdvertiseBean
-import com.example.mykotlin.model.bean.LoginBean
+import com.example.mykotlin.model.bean.UserInfo
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -13,17 +11,13 @@ import retrofit2.http.POST
 interface API {
 
     companion object {
-        var base_url = "https://app.hyy10086.com/"
+        var base_url = "https://www.wanandroid.com/"
     }
 
     @FormUrlEncoded
-    @POST("app/login.do")
+    @POST("user/login")
     suspend fun login(
-        @Field("cellphone") cellPhone: String = "",
-        @Field("password") password: String = "",
-        @Field("type") type: Int = 0
-    ): Res<LoginBean>
-
-    @POST("/app/getAdImages.do")
-    suspend fun getAdvertise(): Res<AdvertiseBean>
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): Res<UserInfo>
 }

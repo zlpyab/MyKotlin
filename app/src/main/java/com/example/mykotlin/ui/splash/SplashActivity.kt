@@ -1,19 +1,15 @@
-package com.example.mykotlin.ui.activity
+package com.example.mykotlin.ui.splash
 
 import android.Manifest
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.CountDownTimer
-import android.text.TextUtils
 import android.view.View
 import com.example.mykotlin.R
 import com.example.mykotlin.base.BaseVmActivity
 import com.example.mykotlin.common.manager.GlideManager
-import com.example.mykotlin.main.MainActivity
+import com.example.mykotlin.ui.login.LoginActivity
 import com.example.mykotlin.util.ActivityHelper
-import com.example.mykotlin.util.SessionUtils
-import com.example.mykotlin.util.Utils
-import com.example.mykotlin.viewModel.LoginViewModel
+import com.example.mykotlin.ui.login.LoginViewModel
 import com.gyf.immersionbar.BarHide
 import kotlinx.android.synthetic.main.activity_splash.*
 import pub.devrel.easypermissions.AppSettingsDialog

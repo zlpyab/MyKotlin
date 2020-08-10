@@ -11,7 +11,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
-
     <string name="network_connection_failed">网络连接失败</string>
     <string name="network_request_failed">网络请求失败</string>
     <string name="network_request_timeout">网络请求超时</string>
@@ -20,4 +19,9 @@
     <string name="login">登录</string>
     <string name="account">账号</string>
     <string name="password">密码</string>
+    <string name="confirm_password">密码</string>
+    <string name="register">注册</string>
+    <string name="account_not_empty">账号不能为空</string>
+    <string name="psw_not_empty">密码不能为空</string>
+    <string name="doing_login">正在登录</string>
 </resources>

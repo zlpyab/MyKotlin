@@ -1,7 +1,12 @@
 package com.example.mykotlin.base
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.mykotlin.common.bus.Bus
+import com.example.mykotlin.common.bus.USER_LOGIN_STATE_CHANGED
+import com.example.mykotlin.ui.login.LoginActivity
+import com.example.mykotlin.util.ActivityHelper
 
 /**
  * Created by zlp on 2020/8/7 0007.
@@ -36,12 +41,12 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseActivity() {
      */
     open fun observe() {
         // 登录失效，跳转登录页
-//        mViewModel.loginStatusInvalid.observe(this, Observer {
-//            if (it) {
-//                Bus.post(USER_LOGIN_STATE_CHANGED, false)
-//                ActivityHelper.start(LoginActivity::class.java)
-//            }
-//        })
+        mViewModel.loginStatusInvalid.observe(this, Observer {
+            if (it) {
+                Bus.post(USER_LOGIN_STATE_CHANGED, false)
+                ActivityHelper.start(LoginActivity::class.java)
+            }
+        })
     }
 
     /**

@@ -66,4 +66,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     //permission
     implementation 'pub.devrel:easypermissions:3.0.0'
+    //cookie jar
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    //bus
+    implementation 'com.jeremyliao:live-event-bus-x:1.7.2'
 }

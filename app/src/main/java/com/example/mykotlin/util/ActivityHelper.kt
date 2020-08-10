@@ -5,8 +5,6 @@ import android.app.Application
 import android.content.Intent
 import com.example.mykotlin.common.simple.ActivityLifecycleCallbacksAdapter
 import com.example.mykotlin.common.simple.putExtras
-import com.example.mykotlin.main.MainActivity
-import com.example.mykotlin.ui.activity.LoginActivity
 
 /**
  * Created by zlp on 2020/7/28 0028.
