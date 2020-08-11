@@ -20,4 +20,12 @@ interface API {
         @Field("username") username: String,
         @Field("password") password: String
     ): Res<UserInfo>
+
+    @FormUrlEncoded
+    @POST("user/register")
+    suspend fun register(
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("repassword") repassword: String
+    ):Res<UserInfo>
 }

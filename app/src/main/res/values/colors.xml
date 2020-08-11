@@ -9,4 +9,10 @@
     <color name="color_7f2d2d2d">#7F2d2d2d</color>
     <color name="color_0a5273">#0A5273</color>
     <color name="color_eeeeee">#eeeeee</color>
+    <color name="color_e3e5e7">#e3e5e7</color>
+
+    <color name="color_0a5273_b3b3b3">#0A5273</color>
+    <color name="color_ffffff_303030">#ffffff</color>
+    <color name="color_5e5e5e">#5e5e5e</color>
+    <color name="color_979797">#979797</color>
 </resources>

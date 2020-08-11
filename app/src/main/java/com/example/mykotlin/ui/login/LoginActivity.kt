@@ -4,9 +4,15 @@ import android.view.inputmethod.EditorInfo.IME_ACTION_GO
 import androidx.lifecycle.Observer
 import com.example.mykotlin.R
 import com.example.mykotlin.base.BaseVmActivity
+import com.example.mykotlin.ui.register.RegisterActivity
 import com.example.mykotlin.util.ActivityHelper
 import com.example.mykotlin.util.Utils
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.tietAccount
+import kotlinx.android.synthetic.main.activity_login.tietPassword
+import kotlinx.android.synthetic.main.activity_login.tilAccount
+import kotlinx.android.synthetic.main.activity_login.tilPassword
+import kotlinx.android.synthetic.main.activity_register.*
 
 /**
  * 登录界面
@@ -39,6 +45,9 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
                 else -> mViewModel.login(account, psw)
 
             }
+        }
+        tv_register.setOnClickListener {
+            ActivityHelper.start(RegisterActivity::class.java)
         }
     }
 

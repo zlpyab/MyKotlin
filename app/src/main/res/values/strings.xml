@@ -19,9 +19,27 @@
     <string name="login">登录</string>
     <string name="account">账号</string>
     <string name="password">密码</string>
-    <string name="confirm_password">密码</string>
+    <string name="confirm_password">确认密码</string>
     <string name="register">注册</string>
     <string name="account_not_empty">账号不能为空</string>
     <string name="psw_not_empty">密码不能为空</string>
     <string name="doing_login">正在登录</string>
+    <string name="account_limit_three">账号不能少于三位</string>
+    <string name="psw_limit_six">密码不能少于6位</string>
+    <string name="confirm_psw_not_empty">确认密码不能为空</string>
+    <string name="psw_not_match">两次输入的密码不一致</string>
+    <string name="doing_register">正在注册</string>
+    <string name="home">首页</string>
+    <string name="system">体系</string>
+    <string name="discovery">发现</string>
+    <string name="navigation">导航</string>
+    <string name="mine">我的</string>
+    <string name="click_onece_exit">再按一次退出</string>
+    <string name="search_key">搜索关键字以逗号隔开</string>
+    <string name="hot">热门</string>
+    <string name="latest">最近</string>
+    <string name="square">广场</string>
+    <string name="project">项目</string>
+    <string name="wechat">公众号</string>
+
 </resources>

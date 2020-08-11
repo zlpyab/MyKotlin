@@ -1,6 +1,7 @@
 package com.example.mykotlin.base
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mykotlin.common.bus.Bus
@@ -10,14 +11,15 @@ import com.example.mykotlin.ui.login.LoginActivity
 import com.example.mykotlin.util.ActivityHelper
 
 /**
- * Created by zlp on 2020/8/7 0007.
+ * Created by zlp on 2020/8/11 0011.
  */
-abstract class BaseVmActivity<VM : BaseViewModel> : BaseActivity() {
+abstract class BaseVmFragment<VM : BaseViewModel> : BaseFragment() {
 
-    protected open lateinit var mViewModel: VM
+    protected lateinit var mViewModel: VM
+    private var lazyLoaded = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initViewModel()
         observe()
         initView()
@@ -25,24 +27,34 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseActivity() {
     }
 
 
+    override fun onResume() {
+        super.onResume()
+        // 实现懒加载
+        if (!lazyLoaded) {
+            lazyLoadData()
+            lazyLoaded = true
+        }
+    }
+
+
     /**
-     * 初始化ViewModel
+     * 初始化viewModel
      */
     private fun initViewModel() {
         mViewModel = ViewModelProvider(this).get(viewModelClass())
     }
 
     /**
-     * 获取ViewModel的class
+     * 获取viewModel的class
      */
-    protected abstract fun viewModelClass(): Class<VM>
+    abstract fun viewModelClass(): Class<VM>
 
     /**
      * 订阅，LiveData、Bus
      */
     open fun observe() {
         // 登录失效，跳转登录页
-        mViewModel.loginStatusInvalid.observe(this, Observer {
+        mViewModel.loginStatusInvalid.observe(viewLifecycleOwner, Observer {
             if (it) {
                 Bus.post(USER_LOGIN_STATE_CHANGED, false)
                 ActivityHelper.start(LoginActivity::class.java)
@@ -50,18 +62,27 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseActivity() {
         })
     }
 
+
     /**
-     * 数据初始化相关
+     * View初始化相关
      */
     open fun initView() {
 
+
     }
 
+    /**
+     * 数据初始化相关
+     */
+    open fun initData() {
+
+
+    }
 
     /**
      * 懒加载数据
      */
-    open fun initData() {
+    open fun lazyLoadData() {
 
     }
 
@@ -78,4 +99,5 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseActivity() {
             false
         }
     }
+
 }

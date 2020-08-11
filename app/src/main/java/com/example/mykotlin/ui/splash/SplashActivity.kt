@@ -7,7 +7,7 @@ import android.view.View
 import com.example.mykotlin.R
 import com.example.mykotlin.base.BaseVmActivity
 import com.example.mykotlin.common.manager.GlideManager
-import com.example.mykotlin.ui.login.LoginActivity
+import com.example.mykotlin.ui.main.MainActivity
 import com.example.mykotlin.util.ActivityHelper
 import com.example.mykotlin.ui.login.LoginViewModel
 import com.gyf.immersionbar.BarHide
@@ -95,7 +95,7 @@ class SplashActivity : BaseVmActivity<LoginViewModel>(), EasyPermissions.Permiss
 
     private fun goLoginOrMain() {
         tv_count.stop()
-        ActivityHelper.start(LoginActivity::class.java)
+        ActivityHelper.start(MainActivity::class.java)
         ActivityHelper.finish(SplashActivity::class.java)
     }
 
