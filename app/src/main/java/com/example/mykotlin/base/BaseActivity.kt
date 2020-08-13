@@ -47,6 +47,4 @@ open abstract class BaseActivity : AppCompatActivity() {
             progressDialogFragment.dismissAllowingStateLoss()
         }
     }
-
-
 }

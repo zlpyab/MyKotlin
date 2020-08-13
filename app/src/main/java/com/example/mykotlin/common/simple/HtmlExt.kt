@@ -1,0 +1,6 @@
+package com.example.mykotlin.common.simple
+
+import androidx.core.text.HtmlCompat
+
+fun String?.htmlToSpanned() =
+    if (this.isNullOrEmpty()) "" else HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)

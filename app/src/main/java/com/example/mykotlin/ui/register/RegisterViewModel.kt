@@ -16,11 +16,13 @@ class RegisterViewModel : BaseViewModel() {
     val submitting = MutableLiveData<Boolean>()
     val registerResult = MutableLiveData<Boolean>()
 
+    private val registerRepository by lazy { RegisterRepository() }
+
     fun register(account: String, psw: String, confirmPsw: String) {
         submitting.value = true
         launch(
             block = {
-                val userInfo = HttpManager.apiService.register(account, psw, confirmPsw).resData()
+                val userInfo = registerRepository.register(account,psw,confirmPsw)
                 SessionUtils.setUserInfo(userInfo)
                 Bus.post(USER_LOGIN_STATE_CHANGED, true)
                 submitting.value = false

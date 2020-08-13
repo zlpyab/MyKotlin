@@ -7,4 +7,5 @@ object Constants {
 
     //key
     val key_user_info = "key_user_info"
+    val key_data = "key_data"
 }

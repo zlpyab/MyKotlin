@@ -60,6 +60,25 @@ open class BaseViewModel : ViewModel() {
     }
 
     /**
+     * 创建并执行协程
+     * @param block 协程中执行
+     * @return Deferred<T>
+     */
+    protected fun <T> async(block: Block<T>): Deferred<T> {
+        return viewModelScope.async { block.invoke() }
+    }
+
+    /**
+     * 取消协程
+     * @param job 协程job
+     */
+    protected fun cancelJob(job: Job?){
+        if (job != null && job.isActive && !job.isCompleted && !job.isCancelled){
+            job.cancel()
+        }
+    }
+
+    /**
      * 统一处理错误
      * @param e 异常
      * @param showErrorToast 是否显示错误吐司
@@ -69,7 +88,7 @@ open class BaseViewModel : ViewModel() {
             is ApiException -> {
                 when (e.code) {
                     -1001 -> {
-                       //  登录失效，清除用户信息、清除cookie/token
+                        //  登录失效，清除用户信息、清除cookie/token
                         SessionUtils.clearUserInfo()
                         HttpManager.clearCookie()
                         loginStatusInvalid.value = true

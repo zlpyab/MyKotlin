@@ -34,7 +34,6 @@ class HomeFragment : BaseFragment(), ScrollToTop {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ImmersionBar.setTitleBar(this, toolbar)
         mFragments = listOf(
             HotFragment.newInstance(),
             LatestFragment.newInstance(),

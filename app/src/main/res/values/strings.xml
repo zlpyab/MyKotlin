@@ -35,11 +35,16 @@
     <string name="navigation">导航</string>
     <string name="mine">我的</string>
     <string name="click_onece_exit">再按一次退出</string>
-    <string name="search_key">搜索关键字以逗号隔开</string>
+    <string name="search_key">搜索关键字以空格隔开</string>
     <string name="hot">热门</string>
     <string name="latest">最近</string>
     <string name="square">广场</string>
     <string name="project">项目</string>
     <string name="wechat">公众号</string>
+    <string name="not_network">网络开小差了~</string>
+    <string name="reload">重新加载</string>
+    <string name="anonymous">匿名</string>
+    <string name="is_top">顶置</string>
+    <string name="new_article">新</string>
 
 </resources>

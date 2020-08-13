@@ -16,11 +16,13 @@ class LoginViewModel : BaseViewModel() {
     val submitting = MutableLiveData<Boolean>()
     val loginResult = MutableLiveData<Boolean>()
 
+    private val loginRepository by lazy { LoginRepository() }
+
     fun login(account: String, psw: String) {
         submitting.value = true
         launch(
             block = {
-                val userInfo = HttpManager.apiService.login(account, psw).resData()
+                val userInfo = loginRepository.login(account,psw)
                 SessionUtils.setUserInfo(userInfo)
                 Bus.post(USER_LOGIN_STATE_CHANGED,true)
                 submitting.value = false

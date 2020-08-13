@@ -15,6 +15,7 @@ import com.example.mykotlin.ui.main.mine.MineFragment
 import com.example.mykotlin.ui.main.navigation.NavigationFragment
 import com.example.mykotlin.ui.main.system.SystemFragment
 import com.example.mykotlin.util.Utils
+import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -31,7 +32,10 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        ImmersionBar.with(this)
+            .statusBarColor(R.color.color_ffffff)
+            .fitsSystemWindows(true)
+            .statusBarDarkFont(true).init()
         mFragments = mapOf(
             R.id.home to createFragment(HomeFragment::class.java),
             R.id.system to createFragment(SystemFragment::class.java),
