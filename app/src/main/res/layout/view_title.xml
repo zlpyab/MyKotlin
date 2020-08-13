@@ -5,8 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/color_ffffff"
     android:id="@+id/ll_title"
-    android:outlineProvider="bounds"
-    android:elevation="@dimen/space2"
   >
     <ImageView
         android:id="@+id/iv_back"

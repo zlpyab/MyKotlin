@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewOutlineProvider
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
 import com.example.mykotlin.R
@@ -29,6 +30,9 @@ class TitleView @JvmOverloads constructor(
         styleable.recycle()
 
         inflate(context, R.layout.view_title, this)
+
+        outlineProvider = ViewOutlineProvider.BOUNDS
+        elevation = 15f
 
         iv_more.visibility = if (showMore) View.VISIBLE else View.INVISIBLE
 
