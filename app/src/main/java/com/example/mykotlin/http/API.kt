@@ -33,6 +33,18 @@ interface API {
     @GET("article/top/json")
     suspend fun getTopArticleList():Res<List<Article>>
 
-    @GET("/article/list/{page}/json")
+    @GET("article/list/{page}/json")
     suspend fun getArticleList(@Path("page") page:Int) :Res<Pagination<Article>>
+
+    @POST("lg/collect/{id}/json")
+    suspend fun collect(@Path("id") id:Int) : Res<Any?>
+
+    @POST("lg/uncollect_originId/{id}/json")
+    suspend fun unCollect(@Path("id") id: Int) : Res<Any?>
+
+    @GET("article/listproject/{page}/json")
+    suspend fun getLatestList(@Path("page") page: Int) : Res<Pagination<Article>>
+
+    @GET("user_article/list/{page}/json")
+    suspend fun getSquareList(@Path("page") page: Int) : Res<Pagination<Article>>
 }

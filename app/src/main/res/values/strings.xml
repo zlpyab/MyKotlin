@@ -46,5 +46,11 @@
     <string name="anonymous">匿名</string>
     <string name="is_top">顶置</string>
     <string name="new_article">新</string>
+    <string name="add_collect">加入收藏</string>
+    <string name="cancel_collect">取消收藏</string>
+    <string name="share">分享</string>
+    <string name="open_explore">浏览器打开</string>
+    <string name="copy_link">复制链接</string>
+    <string name="copy_success">复制成功</string>
 
 </resources>

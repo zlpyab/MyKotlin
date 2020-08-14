@@ -9,9 +9,13 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.example.mykotlin.R
 import com.example.mykotlin.base.BaseVmActivity
 import com.example.mykotlin.common.Constants
+import com.example.mykotlin.common.bus.Bus
+import com.example.mykotlin.common.bus.USER_COLLECT_UPDATE
+import com.example.mykotlin.common.bus.USER_LOGIN_STATE_CHANGED
 import com.example.mykotlin.model.bean.Article
 import com.example.mykotlin.util.Utils
 import com.example.mykotlin.util.whiteHostList
@@ -20,6 +24,7 @@ import com.just.agentweb.DefaultWebClient
 import com.just.agentweb.WebChromeClient
 import com.just.agentweb.WebViewClient
 import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.android.synthetic.main.view_title.view.*
 
 /**
  * 文章详情页
@@ -35,13 +40,16 @@ class DetailsActivity : BaseVmActivity<DetailsViewModel>() {
 
     override fun initView() {
         article = intent?.getParcelableExtra(Constants.key_data) ?: return
-        titleView.bind(DetailsActivity::class.java,article.title)
+        titleView.bind(DetailsActivity::class.java, article.title)
+        titleView.iv_more.setOnClickListener {
+            ActionFragment.newInstance(article).show(supportFragmentManager)
+        }
     }
 
     override fun initData() {
         agentWeb = AgentWeb.with(this)
             .setAgentWebParent(webContainer, ViewGroup.LayoutParams(-1, -1))
-            .useDefaultIndicator(ContextCompat.getColor(this,R.color.color_0a5273),2)
+            .useDefaultIndicator(ContextCompat.getColor(this, R.color.color_0a5273), 2)
             .interceptUnkownUrl()
             .setMainFrameErrorView(R.layout.view_title, R.id.ll_reload)
             .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
@@ -77,7 +85,7 @@ class DetailsActivity : BaseVmActivity<DetailsViewModel>() {
                 loadsImagesAutomatically = true
                 useWideViewPort = true
                 loadWithOverviewMode = true
-              //  textZoom = 14
+                //  textZoom = 14
             }
         }
         agentWeb?.urlLoader?.loadUrl(article.link)
@@ -133,6 +141,20 @@ class DetailsActivity : BaseVmActivity<DetailsViewModel>() {
         titleView.setTitle(str)
     }
 
+    override fun observe() {
+        super.observe()
+        mViewModel.collect.observe(this, Observer {
+            if (article.collect != it) {
+                article.collect = it
+                //收藏变化 通知其他界面更新
+                Bus.post(USER_COLLECT_UPDATE, article.id to it)
+            }
+        })
+        Bus.observe<Boolean>(USER_LOGIN_STATE_CHANGED, this, Observer {
+            mViewModel.updateCollectState(article.id)
+        })
+    }
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         return if (agentWeb?.handleKeyEvent(keyCode, event) == true) {
             true
@@ -154,5 +176,13 @@ class DetailsActivity : BaseVmActivity<DetailsViewModel>() {
     override fun onDestroy() {
         agentWeb?.webLifeCycle?.onDestroy()
         super.onDestroy()
+    }
+
+    fun changeCollectState() {
+        if (article.collect) {
+            mViewModel.unCollect(article.id)
+        } else {
+            mViewModel.collect(article.id)
+        }
     }
 }

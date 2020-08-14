@@ -26,6 +26,24 @@ object SessionUtils {
         }
     }
 
+    fun addCollectId(id: Int){
+        getUserInfo()?.let {
+            if (id !in  it.collectIds){
+                it.collectIds.add(id)
+                setUserInfo(it)
+            }
+        }
+    }
+
+    fun removeCollectId(id: Int){
+         getUserInfo()?.let {
+             if (id in  it.collectIds){
+                 it.collectIds.remove(id)
+                 setUserInfo(it)
+             }
+         }
+    }
+
 
     fun clearUserInfo() {
         setUserInfo(null)

@@ -6,10 +6,14 @@ import com.example.mykotlin.R
 import com.example.mykotlin.base.BaseVmFragment
 import com.example.mykotlin.common.Constants
 import com.example.mykotlin.common.adapter.ArticleAdapter
+import com.example.mykotlin.common.bus.Bus
+import com.example.mykotlin.common.bus.USER_COLLECT_UPDATE
+import com.example.mykotlin.common.bus.USER_LOGIN_STATE_CHANGED
 import com.example.mykotlin.common.loadmore.LoadMoreStatus
 import com.example.mykotlin.common.simple.ScrollToTop
 import com.example.mykotlin.ui.details.DetailsActivity
 import com.example.mykotlin.util.ActivityHelper
+import com.example.mykotlin.util.Utils
 import kotlinx.android.synthetic.main.fragment_hot.*
 import kotlinx.android.synthetic.main.include_reload.*
 
@@ -43,8 +47,19 @@ class HotFragment : BaseVmFragment<HotViewModel>(), ScrollToTop {
                 mViewModel.loadMoreArticleList()
             }
             setOnItemClickListener { _, _, position ->
-               val article = mAdapter.data[position]
+                val article = mAdapter.data[position]
                 ActivityHelper.start(DetailsActivity::class.java, mapOf(Constants.key_data to article))
+            }
+            setOnItemChildClickListener { adapter, view, position ->
+                if (view.id == R.id.iv_collect && checkLogin()) {
+                    view.isSelected = !view.isSelected
+                    val article = mAdapter.data[position]
+                    if (article.collect) {
+                        mViewModel.unCollect(article.id)
+                    } else {
+                        mViewModel.collect(article.id)
+                    }
+                }
             }
         }
         recyclerView.adapter = mAdapter
@@ -58,7 +73,7 @@ class HotFragment : BaseVmFragment<HotViewModel>(), ScrollToTop {
         super.observe()
         mViewModel.run {
             articleList.observe(viewLifecycleOwner, Observer {
-                mAdapter.setNewInstance(it)
+                mAdapter.setList(it)
             })
             refreshStatus.observe(viewLifecycleOwner, Observer {
                 swipeRefreshLayout.isRefreshing = it
@@ -75,6 +90,12 @@ class HotFragment : BaseVmFragment<HotViewModel>(), ScrollToTop {
                 }
             })
         }
+        Bus.observe<Boolean>(USER_LOGIN_STATE_CHANGED, viewLifecycleOwner, Observer {
+            mViewModel.updateListCollectState()
+        })
+        Bus.observe<Pair<Int, Boolean>>(USER_COLLECT_UPDATE, viewLifecycleOwner, Observer {
+            mViewModel.updateItemCollectState(it)
+        })
     }
 
     override fun lazyLoadData() {

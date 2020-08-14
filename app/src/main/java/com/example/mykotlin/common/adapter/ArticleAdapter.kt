@@ -17,6 +17,9 @@ import kotlinx.android.synthetic.main.item_article.view.*
 class ArticleAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_article),
     LoadMoreModule {
 
+    init {
+        addChildClickViewIds(R.id.iv_collect)
+    }
 
     override fun convert(holder: BaseViewHolder, item: Article) {
         holder.run {
