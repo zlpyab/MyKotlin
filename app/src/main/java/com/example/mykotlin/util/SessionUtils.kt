@@ -14,7 +14,7 @@ object SessionUtils {
     private val mGson by lazy { Gson() }
 
     fun setUserInfo(userInfo: UserInfo?) {
-        SPUtils.getInstance().put(Constants.key_user_info, mGson.toJson(userInfo))
+        SPUtils.getInstance().put(Constants.key_user_info, if (null == userInfo) "" else mGson.toJson(userInfo))
     }
 
     fun getUserInfo(): UserInfo? {
@@ -26,24 +26,29 @@ object SessionUtils {
         }
     }
 
-    fun addCollectId(id: Int){
-        getUserInfo()?.let {
-            if (id !in  it.collectIds){
-                it.collectIds.add(id)
-                setUserInfo(it)
-            }
-        }
+    fun setNightMode(isNight : Boolean){
+        SPUtils.getInstance().put(Constants.key_night_mode,isNight)
     }
 
-    fun removeCollectId(id: Int){
-         getUserInfo()?.let {
-             if (id in  it.collectIds){
-                 it.collectIds.remove(id)
-                 setUserInfo(it)
-             }
-         }
+    fun getNightMode() : Boolean{
+        return SPUtils.getInstance().getBoolean(Constants.key_night_mode)
     }
 
+    fun setLock(isLock : Boolean){
+        SPUtils.getInstance().put(Constants.key_lock,isLock)
+    }
+
+    fun isLock() : Boolean{
+      return  SPUtils.getInstance().getBoolean(Constants.key_lock)
+    }
+
+    fun setLockPsw(psw :String){
+        SPUtils.getInstance().put(Constants.key_lock_psw,psw)
+    }
+
+    fun getLockPsw():String{
+        return SPUtils.getInstance().getString(Constants.key_lock_psw,"")
+    }
 
     fun clearUserInfo() {
         setUserInfo(null)

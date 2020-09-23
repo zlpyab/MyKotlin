@@ -1,6 +1,7 @@
 package com.example.mykotlin.http
 
 import com.example.mykotlin.model.bean.Article
+import com.example.mykotlin.model.bean.Category
 import com.example.mykotlin.model.bean.Pagination
 import com.example.mykotlin.model.bean.UserInfo
 import retrofit2.http.*
@@ -47,4 +48,22 @@ interface API {
 
     @GET("user_article/list/{page}/json")
     suspend fun getSquareList(@Path("page") page: Int) : Res<Pagination<Article>>
+
+    @GET("project/tree/json")
+    suspend fun getCategoryList() : Res<MutableList<Category>>
+
+    @GET("project/list/{page}/json")
+    suspend fun getProjectList(
+        @Path("page") page: Int,
+        @Query("cid") cid : Int
+    ) : Res<Pagination<Article>>
+
+    @GET("wxarticle/chapters/json")
+    suspend fun getWechatCategories(): Res<MutableList<Category>>
+
+    @GET("wxarticle/list/{id}/{page}/json")
+    suspend fun getWechatArticleList(
+        @Path("page") page: Int,
+        @Path("id") id: Int
+    ): Res<Pagination<Article>>
 }

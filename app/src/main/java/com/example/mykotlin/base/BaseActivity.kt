@@ -1,9 +1,11 @@
 package com.example.mykotlin.base
 
+import android.gesture.GestureUtils
 import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mykotlin.common.dialog.ProgressDialogFragment
+import com.example.mykotlin.util.AppLockUtils
 import com.gyf.immersionbar.ImmersionBar
 
 /**
@@ -21,6 +23,11 @@ open abstract class BaseActivity : AppCompatActivity() {
 
         //初始化沉浸式
         initImmersionBar()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        AppLockUtils.openGesture(this)
     }
 
     open fun getLayoutId() = 0

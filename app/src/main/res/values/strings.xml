@@ -52,5 +52,13 @@
     <string name="open_explore">浏览器打开</string>
     <string name="copy_link">复制链接</string>
     <string name="copy_success">复制成功</string>
+    <string name="my_collect">我的收藏</string>
+    <string name="system_setting">系统设置</string>
+    <string name="night_mode">夜间模式</string>
+    <string name="out_login">退出登录</string>
+    <string name="sure_out_login">确定退出登录？</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="psw_lock">密码锁</string>
 
 </resources>

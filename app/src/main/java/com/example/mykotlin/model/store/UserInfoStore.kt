@@ -16,6 +16,9 @@ object UserInfoStore {
         SessionUtils.setUserInfo(info)
     }
 
+    fun clearUser(){
+        SessionUtils.setUserInfo(null)
+    }
 
     /**
      *添加收藏文章id

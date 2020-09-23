@@ -26,7 +26,8 @@ class TitleView @JvmOverloads constructor(
 
     init {
         val styleable = context.obtainStyledAttributes(attrs, R.styleable.TitleView)
-        val showMore = styleable.getBoolean(R.styleable.TitleView_showMore, true)
+        val showMore = styleable.getBoolean(R.styleable.TitleView_showMore, false)
+        val showBack = styleable.getBoolean(R.styleable.TitleView_showBack,true)
         styleable.recycle()
 
         inflate(context, R.layout.view_title, this)
@@ -35,6 +36,7 @@ class TitleView @JvmOverloads constructor(
         elevation = 15f
 
         iv_more.visibility = if (showMore) View.VISIBLE else View.INVISIBLE
+        iv_back.visibility = if (showBack) View.VISIBLE else View.INVISIBLE
 
         iv_back.setOnClickListener {
             clazz?.let {
@@ -55,5 +57,9 @@ class TitleView @JvmOverloads constructor(
     fun setTitle(str:String?){
         if (!str.isNullOrEmpty())
             tv_title.text = str.htmlToSpanned()
+    }
+
+    fun showBack(isShow : Boolean){
+        iv_back.visibility = if (isShow) View.VISIBLE else View.INVISIBLE
     }
 }

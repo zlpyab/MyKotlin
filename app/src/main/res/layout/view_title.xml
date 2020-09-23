@@ -35,5 +35,6 @@
         android:layout_marginStart="@dimen/space4"
         android:layout_marginEnd="@dimen/space4"
         android:padding="@dimen/space12"
+        android:visibility="invisible"
         android:src="@drawable/ic_more_vert_24" />
 </LinearLayout>

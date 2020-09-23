@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/category"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/font13"
+    android:layout_marginEnd="@dimen/space10"
+    android:layout_marginBottom="@dimen/space8"
+    android:background="@drawable/selector_bg_category_item"
+    android:textColor="@color/tab_color_selected"
+    android:checked="false"
+    android:text="你好"
+    />
+

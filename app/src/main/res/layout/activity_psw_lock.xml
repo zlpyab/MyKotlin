@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.psw.PswLockActivity">
+
+    <com.example.mykotlin.view.TitleView
+        android:id="@+id/titleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space50"
+        android:textSize="@dimen/font18"
+        android:gravity="center"
+        android:textColor="@color/color_000000"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/titleView"
+        />
+
+    <EditText
+        android:id="@+id/et_psw"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space48"
+        android:layout_marginStart="@dimen/space30"
+        android:layout_marginEnd="@dimen/space30"
+        android:layout_marginTop="@dimen/space100"
+        android:inputType="phone"
+        android:maxLength="6"
+        android:hint="请输入6位数字密码"
+        android:textSize="@dimen/font14"
+        app:layout_constraintTop_toBottomOf="@+id/tv_type"
+        />
+
+    <TextView
+        android:id="@+id/tv_forget_psw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/et_psw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="忘记密码？"
+        android:textSize="@dimen/font12"
+        android:textColor="@color/color_0a5273"
+        android:layout_marginTop="@dimen/space20"
+
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

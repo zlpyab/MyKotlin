@@ -2,12 +2,15 @@ package com.example.mykotlin.ui.main
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.ViewPropertyAnimator
 import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import com.example.mykotlin.R
 import com.example.mykotlin.base.BaseActivity
+import com.example.mykotlin.common.broadcast.ScreenBroadcastReceiver
 import com.example.mykotlin.common.simple.ScrollToTop
 import com.example.mykotlin.ui.main.discovery.DiscoveryFragment
 import com.example.mykotlin.ui.main.home.HomeFragment
@@ -18,10 +21,13 @@ import com.example.mykotlin.util.Utils
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 /**
  * 主页
  */
 class MainActivity : BaseActivity() {
+
+    lateinit var screenBroadcastReceiver : ScreenBroadcastReceiver
 
     private lateinit var mFragments: Map<Int, Fragment>
     private var bottomNavigationViewAnimtor: ViewPropertyAnimator? = null
@@ -32,6 +38,15 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val filter = IntentFilter()
+        filter.addAction(Intent.ACTION_SCREEN_OFF)
+        filter.addAction(Intent.ACTION_SCREEN_ON)
+        filter.addAction(Intent.ACTION_USER_PRESENT)
+        //开启监听广播
+        screenBroadcastReceiver = ScreenBroadcastReceiver()
+        registerReceiver(screenBroadcastReceiver, filter)
+
         ImmersionBar.with(this)
             .statusBarColor(R.color.color_ffffff)
             .fitsSystemWindows(true)

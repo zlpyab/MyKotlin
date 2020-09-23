@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="TitleView">
         <attr name="showMore" format="boolean"/>
+        <attr name="showBack" format="boolean"/>
     </declare-styleable>
 </resources>
