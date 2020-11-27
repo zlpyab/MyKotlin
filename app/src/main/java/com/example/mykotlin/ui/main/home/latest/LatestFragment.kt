@@ -101,6 +101,4 @@ class LatestFragment : BaseVmFragment<LatestViewModel>(),ScrollToTop{
     override fun scrollToTop() {
         recyclerView.smoothScrollToPosition(0)
     }
-
-
 }

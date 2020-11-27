@@ -1,9 +1,7 @@
 package com.example.mykotlin.http
 
-import com.example.mykotlin.model.bean.Article
-import com.example.mykotlin.model.bean.Category
-import com.example.mykotlin.model.bean.Pagination
-import com.example.mykotlin.model.bean.UserInfo
+import com.example.mykotlin.model.bean.*
+import com.youth.banner.Banner
 import retrofit2.http.*
 
 /**
@@ -66,4 +64,26 @@ interface API {
         @Path("page") page: Int,
         @Path("id") id: Int
     ): Res<Pagination<Article>>
+
+    @GET("navi/json")
+    suspend fun getNavigations(): Res<List<Navigation>>
+
+    @GET("banner/json")
+    suspend fun getBanner() : Res<List<BannerInfo>>
+
+    @GET("hotkey/json")
+    suspend fun getHotWords() : Res<List<HotWords>>
+
+    @GET("friend/json")
+    suspend fun getWebkit() : Res<List<Webkits>>
+
+    @GET("tree/json")
+    suspend fun getSystemCategory() : Res<MutableList<Category>>
+
+    @GET("article/list/{page}/json")
+    suspend fun getArticleListByCid(
+        @Path("page") page: Int,
+        @Query("cid") cid: Int
+    ): Res<Pagination<Article>>
+
 }

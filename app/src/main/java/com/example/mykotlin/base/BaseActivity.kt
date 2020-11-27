@@ -1,6 +1,5 @@
 package com.example.mykotlin.base
 
-import android.gesture.GestureUtils
 import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity

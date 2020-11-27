@@ -7,7 +7,6 @@ import com.example.mykotlin.App
 import com.example.mykotlin.R
 import com.example.mykotlin.http.ApiException
 import com.example.mykotlin.http.HttpManager
-import com.example.mykotlin.util.CommonUtils
 import com.example.mykotlin.util.SessionUtils
 import com.example.mykotlin.util.Utils
 import com.google.gson.JsonParseException

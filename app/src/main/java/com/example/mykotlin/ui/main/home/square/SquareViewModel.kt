@@ -98,10 +98,8 @@ class SquareViewModel : BaseViewModel() {
         val list = articleList.value
         if (list.isNullOrEmpty()) return
         if (isLogin()){
-            list.forEach {
-                val collectIds = UserInfoStore.getUserInfo()?.collectIds ?: return
-                it.collect = collectIds.contains(it.id)
-            }
+            val collectIds = UserInfoStore.getUserInfo()?.collectIds ?: return
+            list.forEach { it.collect = collectIds.contains(it.id) }
         }else{
             list.forEach { it.collect = false }
         }

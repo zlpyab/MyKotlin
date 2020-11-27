@@ -69,7 +69,6 @@ class SplashActivity : BaseVmActivity<LoginViewModel>(), EasyPermissions.Permiss
             checkPermission()
         }
     }
-
     private fun isNeedShowAdv() {
         GlideManager.loadImg("https://app.hyy10086.com/common/image/20200730/9f56fe4a-6be6-4d7f-bcd9-97eec1dc12cb5985.jpg", iv_img, this)
         countTimer.start()

@@ -14,8 +14,7 @@ import kotlinx.android.synthetic.main.item_article.view.*
 /**
  * Created by zlp on 2020/8/12 0012.
  */
-class ArticleAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_article),
-    LoadMoreModule {
+class ArticleAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_article), LoadMoreModule {
 
     init {
         addChildClickViewIds(R.id.iv_collect)

@@ -7,20 +7,20 @@
     android:background="@color/color_ffffff"
     android:orientation="vertical">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_category"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space48"
-        android:elevation="@dimen/space2"
-        android:gravity="center"
-        android:text="@string/navigation"
+        android:layout_height="wrap_content"
         android:background="@color/color_ffffff"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="@color/color_000000"
-        android:textSize="@dimen/font18" />
+        android:elevation="@dimen/space1"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/space10"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_category" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <FrameLayout
@@ -31,21 +31,9 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-            <TextView
-                android:id="@+id/tvFloatTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@color/color_ffffff"
-                android:fontFamily="sans-serif-medium"
-                android:paddingStart="16dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:textColor="@color/color_5e5e5e"
-                android:visibility="gone"
-                android:text="常用网站"
-                tools:visibility="visible" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_article" />
 
             <include
                 android:id="@+id/view_reload"

@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.content.IntentFilter
+import android.media.MediaScannerConnection
 import android.os.Bundle
 import android.view.ViewPropertyAnimator
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import com.example.mykotlin.ui.main.system.SystemFragment
 import com.example.mykotlin.util.Utils
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 
 /**
@@ -38,6 +40,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         val filter = IntentFilter()
         filter.addAction(Intent.ACTION_SCREEN_OFF)

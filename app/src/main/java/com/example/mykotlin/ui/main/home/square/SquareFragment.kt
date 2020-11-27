@@ -14,6 +14,7 @@ import com.example.mykotlin.common.simple.ScrollToTop
 import com.example.mykotlin.common.simple.isLogin
 import com.example.mykotlin.ui.details.DetailsActivity
 import com.example.mykotlin.util.ActivityHelper
+import com.example.mykotlin.util.Utils
 import kotlinx.android.synthetic.main.fragment_latest.*
 
 /**
